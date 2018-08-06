@@ -116,7 +116,7 @@ class bf_woo_booking_requirements {
 		);
 
 		// Call the tgmpa function to register the required plugins
-		tgmpa( $plugins, $config );
+		bf_woo_booking_tmpga( $plugins, $config );
 	}
 }
 

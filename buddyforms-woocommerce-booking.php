@@ -57,11 +57,11 @@ if ( ! class_exists( 'buddyforms_woocommerce_booking' ) ) {
 		private function __construct() {
 			$this->constants();
 			$this->load_plugin_textdomain();
-			require_once BF_WOO_ELEM_INCLUDES_PATH . 'bf_woo_elem_requirements.php';
-			new bf_woo_elem_requirements();
+			require_once 'classes/class-bf-woo-book-requirements.php';
+			new bf_woo_booking_requirements();
 			if ( bf_woo_elem_requirements::is_buddy_form_active() && bf_woo_elem_requirements::is_woocommerce_active() ) {
-				require_once BF_WOO_ELEM_INCLUDES_PATH . 'bf_woo_elem_manager.php';
-				new bf_woo_elem_manager();
+				require_once 'classes/class-bf-woo-book-manager.php';
+				new bf_woo_booking_manager();
 			} else {
 				//TODO add an admin message if buddyforms or woo are not active
 			}
