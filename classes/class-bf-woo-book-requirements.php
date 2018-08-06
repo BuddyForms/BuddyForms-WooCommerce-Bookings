@@ -31,6 +31,12 @@ class bf_woo_booking_requirements {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	}
 
+	public static function is_buddy_form_active() {
+		self::load_plugins_dependency();
+
+		return ( is_plugin_active( 'buddyforms-premium/BuddyForms.php' ) || is_plugin_active( 'buddyforms/BuddyForms.php' ) );
+	}
+
 	public function setup_init() {
 		// Only Check for requirements in the admin
 		if ( ! is_admin() ) {

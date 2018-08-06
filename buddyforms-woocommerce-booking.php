@@ -39,7 +39,7 @@ if ( ! defined( 'WPINC' ) ) {
 if ( ! class_exists( 'buddyforms_woocommerce_booking' ) ) {
 
 	require_once dirname( __FILE__ ) . '/classes/class-bf-woo-book-fs.php';
-	new bf_woo_elem_fs();
+	new bf_woo_booking_fs();
 
 	class buddyforms_woocommerce_booking {
 
@@ -59,7 +59,7 @@ if ( ! class_exists( 'buddyforms_woocommerce_booking' ) ) {
 			$this->load_plugin_textdomain();
 			require_once 'classes/class-bf-woo-book-requirements.php';
 			new bf_woo_booking_requirements();
-			if ( bf_woo_elem_requirements::is_buddy_form_active() && bf_woo_elem_requirements::is_woocommerce_active() ) {
+			if ( bf_woo_booking_requirements::is_buddy_form_active() && bf_woo_booking_requirements::is_woocommerce_active() ) {
 				require_once 'classes/class-bf-woo-book-manager.php';
 				new bf_woo_booking_manager();
 			} else {
