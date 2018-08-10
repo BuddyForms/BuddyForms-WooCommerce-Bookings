@@ -63,9 +63,16 @@ if ( ! class_exists( 'buddyforms_woocommerce_booking' ) ) {
 				require_once 'classes/class-bf-woo-book-manager.php';
 				new bf_woo_booking_manager();
 			} else {
-				//TODO add an admin message if buddyforms or woo are not active
+                add_action( 'network_admin_notices', array( $this, 'requirement_message' ) );
+                add_action( 'admin_notices', array( $this, 'requirement_message' ) );
 			}
 		}
+
+        public function requirement_message() {
+            echo '<div class="error"><p>'
+                . __( '<b>BuddyForms -> Woocommerce Booking</b> requires that BuddyForms and Woocommerce are installed and active. Until then, keep plugin activated only to continue enjoying this insightful message.', 'bf_woo_booking' )
+                . '</p></div>';
+        }
 
 		private function constants() {
 			self::$assets_css = plugin_dir_url( __FILE__ ) . 'assets/css/';
