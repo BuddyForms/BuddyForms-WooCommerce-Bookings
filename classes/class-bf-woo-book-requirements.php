@@ -26,6 +26,11 @@ class bf_woo_booking_requirements {
 
 		return is_plugin_active( 'woocommerce/woocommerce.php' );
 	}
+    public static function is_bf_woo_elem_active() {
+        self::load_plugins_dependency();
+
+        return is_plugin_active( 'bf-woo-elem/loader.php' );
+    }
 
 	public static function load_plugins_dependency() {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );

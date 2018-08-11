@@ -59,7 +59,7 @@ if ( ! class_exists( 'buddyforms_woocommerce_booking' ) ) {
 			$this->load_plugin_textdomain();
 			require_once 'classes/class-bf-woo-book-requirements.php';
 			new bf_woo_booking_requirements();
-			if ( bf_woo_booking_requirements::is_buddy_form_active() && bf_woo_booking_requirements::is_woocommerce_active() ) {
+			if ( bf_woo_booking_requirements::is_buddy_form_active() && bf_woo_booking_requirements::is_woocommerce_active() && bf_woo_booking_requirements::is_bf_woo_elem_active()  ) {
 				require_once 'classes/class-bf-woo-book-manager.php';
 				new bf_woo_booking_manager();
 			} else {
@@ -70,7 +70,7 @@ if ( ! class_exists( 'buddyforms_woocommerce_booking' ) ) {
 
         public function requirement_message() {
             echo '<div class="error"><p>'
-                . __( '<b>BuddyForms -> Woocommerce Booking</b> requires that BuddyForms and Woocommerce are installed and active. Until then, keep plugin activated only to continue enjoying this insightful message.', 'bf_woo_booking' )
+                . __( '<b>BuddyForms -> Woocommerce Booking</b> requires that BuddyForms, Woocommerce and BuddyForms WooCommerce Form Elements are installed and active. Until then, keep plugin activated only to continue enjoying this insightful message.', 'bf_woo_booking' )
                 . '</p></div>';
         }
 
