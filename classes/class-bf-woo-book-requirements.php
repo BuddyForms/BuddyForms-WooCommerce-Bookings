@@ -26,11 +26,18 @@ class bf_woo_booking_requirements {
 
 		return is_plugin_active( 'woocommerce/woocommerce.php' );
 	}
-    public static function is_bf_woo_elem_active() {
-        self::load_plugins_dependency();
 
-        return is_plugin_active( 'bf-woo-elem/loader.php' );
-    }
+	public static function is_bf_woo_elem_active() {
+		self::load_plugins_dependency();
+
+		return is_plugin_active( 'BuddyForms-WooCommerce-Form-Elements/loader.php' );
+	}
+
+	public static function is_woo_booking_active() {
+		self::load_plugins_dependency();
+
+		return is_plugin_active( 'woocommerce-bookings/woocommerce-bookings.php' );
+	}
 
 	public static function load_plugins_dependency() {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -92,12 +99,18 @@ class bf_woo_booking_requirements {
 
 		$config = array(
 			'id'           => 'bf_woo_booking',
-			'menu'         => 'bf_woo_booking-install-plugins', // Menu slug.
-			'parent_slug'  => 'plugins.php', // Parent menu slug.
-			'capability'   => 'manage_options', // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
-			'has_notices'  => true, // Show admin notices or not.
-			'dismissable'  => false, // If false, a user cannot dismiss the nag message.
-			'is_automatic' => true, // Automatically activate plugins after installation or not.
+			'menu'         => 'bf_woo_booking-install-plugins',
+			// Menu slug.
+			'parent_slug'  => 'plugins.php',
+			// Parent menu slug.
+			'capability'   => 'manage_options',
+			// Capability needed to view plugin install page, should be a capability associated with the parent menu used.
+			'has_notices'  => true,
+			// Show admin notices or not.
+			'dismissable'  => false,
+			// If false, a user cannot dismiss the nag message.
+			'is_automatic' => true,
+			// Automatically activate plugins after installation or not.
 			'strings'      => array(
 				'notice_can_install_required'    => _n_noop(
 				/* translators: 1: plugin name(s). */

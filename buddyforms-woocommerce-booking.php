@@ -59,25 +59,28 @@ if ( ! class_exists( 'buddyforms_woocommerce_booking' ) ) {
 			$this->load_plugin_textdomain();
 			require_once 'classes/class-bf-woo-book-requirements.php';
 			new bf_woo_booking_requirements();
-			if ( bf_woo_booking_requirements::is_buddy_form_active() && bf_woo_booking_requirements::is_woocommerce_active() && bf_woo_booking_requirements::is_bf_woo_elem_active()  ) {
+			if (
+				bf_woo_booking_requirements::is_buddy_form_active() && bf_woo_booking_requirements::is_woocommerce_active()
+				&& bf_woo_booking_requirements::is_bf_woo_elem_active() && bf_woo_booking_requirements::is_woo_booking_active()
+			) {
 				require_once 'classes/class-bf-woo-book-manager.php';
 				new bf_woo_booking_manager();
 			} else {
-                add_action( 'network_admin_notices', array( $this, 'requirement_message' ) );
-                add_action( 'admin_notices', array( $this, 'requirement_message' ) );
+				add_action( 'network_admin_notices', array( $this, 'requirement_message' ) );
+				add_action( 'admin_notices', array( $this, 'requirement_message' ) );
 			}
 		}
 
-        public function requirement_message() {
-            echo '<div class="error"><p>'
-                . __( '<b>BuddyForms -> Woocommerce Booking</b> requires that BuddyForms, Woocommerce and BuddyForms WooCommerce Form Elements are installed and active. Until then, keep plugin activated only to continue enjoying this insightful message.', 'bf_woo_booking' )
-                . '</p></div>';
-        }
+		public function requirement_message() {
+			echo '<div class="error"><p>'
+			     . __( '<b>BuddyForms -> Woocommerce Booking</b> requires that BuddyForms, Woocommerce, Woocommerce Booking and BuddyForms WooCommerce Form Elements are installed and active. Until then, keep plugin activated only to continue enjoying this insightful message.', 'bf_woo_booking' )
+			     . '</p></div>';
+		}
 
 		private function constants() {
 			self::$assets_css = plugin_dir_url( __FILE__ ) . 'assets/css/';
-			self::$assets_js = plugin_dir_url( __FILE__ ) . 'assets/js/';
-			self::$views = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
+			self::$assets_js  = plugin_dir_url( __FILE__ ) . 'assets/js/';
+			self::$views      = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
 		}
 
 		/**
