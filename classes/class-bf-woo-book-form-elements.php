@@ -100,12 +100,12 @@ class bf_woo_booking_elements {
             add_filter( 'woocommerce_product_data_tabs', array( $this, 'register_tab' ) );
             add_action( 'woocommerce_product_data_panels', array( $this, 'booking_panels' ) );
         }
+        wp_enqueue_script( 'bf_woo_bookings_settings_js', buddyforms_woocommerce_booking::$assets_js . 'bf_woo_booking_settings.js', array( 'jquery' ), null , true );
     }
     public function styles_and_scripts() {
         global $post, $wp_scripts;
 
         $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
         wp_enqueue_style( 'wc_bookings_admin_styles', WC_BOOKINGS_PLUGIN_URL . '/assets/css/admin.css', null, WC_BOOKINGS_VERSION );
         wp_register_script( 'wc_bookings_writepanel_js', WC_BOOKINGS_PLUGIN_URL . '/assets/js/writepanel' . $suffix . '.js', array( 'jquery', 'jquery-ui-datepicker' ), WC_BOOKINGS_VERSION, true );
         wp_register_script( 'wc_bookings_settings_js', WC_BOOKINGS_PLUGIN_URL . '/assets/js/settings' . $suffix . '.js', array( 'jquery' ), WC_BOOKINGS_VERSION, true );
