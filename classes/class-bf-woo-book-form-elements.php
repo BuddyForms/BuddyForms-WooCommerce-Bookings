@@ -16,7 +16,7 @@ class bf_woo_booking_elements {
 
 	public function __construct() {
         add_action( 'buddyforms_bookeable_product_display_element', array( $this, 'buddyforms_bookeable_product' ) );
-        add_action( 'wp_enqueue_scripts', array( $this, 'styles_and_scripts' ) );
+        add_action( 'wp_enqueue_scripts', array( $this, 'styles_and_scripts' ),99 );
 	}
 
     public function buddyforms_bookeable_product() {
@@ -100,7 +100,7 @@ class bf_woo_booking_elements {
             add_filter( 'woocommerce_product_data_tabs', array( $this, 'register_tab' ) );
             add_action( 'woocommerce_product_data_panels', array( $this, 'booking_panels' ) );
         }
-        wp_enqueue_script( 'bf_woo_bookings_settings_js', buddyforms_woocommerce_booking::$assets_js . 'bf_woo_booking_settings.js', array( 'jquery' ), null , true );
+
     }
     public function styles_and_scripts() {
         global $post, $wp_scripts;
@@ -126,7 +126,7 @@ class bf_woo_booking_elements {
             'ajax_url'               => admin_url( 'admin-ajax.php' ),
             'calendar_image'         => WC()->plugin_url() . '/assets/images/calendar.png',
         );
-
+        wp_enqueue_script( 'bf_woo_bookings_settings_js', buddyforms_woocommerce_booking::$assets_js . 'bf_woo_booking_settings.js', array( 'jquery' ), null , true );
         wp_localize_script( 'wc_bookings_writepanel_js', 'wc_bookings_writepanel_js_params', $params );
     }
 }
