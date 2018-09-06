@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: BuddyForms -> Woocommerce Booking
+ * Plugin Name: BuddyForms Woocommerce Booking
  * Plugin URI: http://buddyforms.com/downloads/
  * Description: Add Woocommerce Booking Element to your BuddyForms
  * Version: 1.0.0
