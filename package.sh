@@ -4,8 +4,6 @@ pluginfolder=$wd
 originalfoldername=$(basename "$pluginfolder"| awk -F' ' '{print $1}')
 packagename=$originalfoldername
 
-fileroot="$packagename.php"
-
 r=$(( RANDOM % 10 ));
 foldername="$originalfoldername-$r"
 
@@ -30,11 +28,15 @@ rm -rf ./.directory
 rm -rf ./node_modules
 rm -rf ./wp-config-test.php
 rm -rf ./*.yml
+rm -rf ./*.xml
+rm -rf ./*.dist
 rm -rf ./*.neon
 rm -rf ./.*.cache
 rm -rf ./psalm.xml
 rm -rf ./package.json
+rm -rf ./composer.json
 rm -rf ./Gruntfile.js
+rm -rf ./gulpfile.js
 rm -rf ./composer.lock
 rm -rf ./.netbeans*
 rm -rf ./.php_cs
@@ -42,6 +44,7 @@ rm -rf ./*.zip
 #This contain the test stuff
 rm -rf ./vendor
 rm -rf ./tests
+rm -rf ./bin
 #Scripts
 rm -rf ./*.sh
 

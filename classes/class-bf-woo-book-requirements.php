@@ -24,36 +24,19 @@ class bf_woo_booking_requirements {
 	public static function is_woocommerce_active() {
 		self::load_plugins_dependency();
 
-		return self::check_if_plugin_is_active( 'WooCommerce' );
+		return is_plugin_active( 'woocommerce/woocommerce.php' );
 	}
 
-	static function  check_if_plugin_is_active($plugin_name){
-	    //up 2 levels to get the plugin root folder
-        $path =  dirname(dirname(dirname(__FILE__)));
-        $active_plugin_site = get_option('active_plugins');
-        foreach (  $active_plugin_site as $key =>$value ){
-            $info = get_plugin_data( $path.DIRECTORY_SEPARATOR.$value, $markup = true, $translate = true );
-            $text_domain = $info['Name'];
-            if($text_domain === $plugin_name){
-                return true;
-            }
-        }
-        return false;
-
-    }
-
 	public static function is_bf_woo_elem_active() {
-		//self::load_plugins_dependency();
-        return self::check_if_plugin_is_active( 'BuddyForms WooCommerce Form Elements' );
+		self::load_plugins_dependency();
 
-
-
+		return is_plugin_active( 'BuddyForms-WooCommerce-Form-Elements/loader.php' );
 	}
 
 	public static function is_woo_booking_active() {
 		self::load_plugins_dependency();
 
-		return self::check_if_plugin_is_active( 'BuddyForms Woocommerce Booking' );
+		return is_plugin_active( 'woocommerce-bookings/woocommerce-bookings.php' );
 	}
 
 	public static function load_plugins_dependency() {
@@ -63,7 +46,7 @@ class bf_woo_booking_requirements {
 	public static function is_buddy_form_active() {
 		self::load_plugins_dependency();
 
-		return  self::check_if_plugin_is_active( 'BuddyForms' ) ;
+		return ( is_plugin_active( 'buddyforms-premium/BuddyForms.php' ) || is_plugin_active( 'buddyforms/BuddyForms.php' ) );
 	}
 
 	public function setup_init() {

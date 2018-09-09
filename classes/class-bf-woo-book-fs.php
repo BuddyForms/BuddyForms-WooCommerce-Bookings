@@ -43,6 +43,11 @@ class bf_woo_booking_fs {
 	public function bfeb_fs_is_parent_active() {
 		$active_plugins_basenames = get_option( 'active_plugins' );
 
+		if ( is_multisite() ) {
+			$network_active_plugins = get_site_option( 'active_sitewide_plugins', array() );
+			$active_plugins_basenames         = array_merge( $active_plugins_basenames, array_keys( $network_active_plugins ) );
+		}
+
 		foreach ( $active_plugins_basenames as $plugin_basename ) {
 			if ( 0 === strpos( $plugin_basename, 'buddyforms/' ) ||
 			     0 === strpos( $plugin_basename, 'buddyforms-premium/' )
@@ -100,14 +105,13 @@ class bf_woo_booking_fs {
 			}
 
 			$bf_woo_booking_fs = fs_dynamic_init( array(
-				'id'                  => '415',
-				'slug'                => 'buddyforms-profile-image-field',
+				'id'                  => '2509',
+				'slug'                => 'buddyforms-woocommerce-bookings',
 				'type'                => 'plugin',
-				'public_key'          => 'pk_10dd57bd7180476f0221961d9d2c9',
+				'public_key'          => 'pk_6213aaa69dd537cf03625ba531444',
 				'is_premium'          => false,
-				// If your addon is a serviceware, set this option to false.
-				'has_premium_version' => true,
 				'has_paid_plans'      => false,
+				'is_org_compliant'    => false,
 				'parent'              => array(
 					'id'         => '391',
 					'slug'       => 'buddyforms',
@@ -115,9 +119,8 @@ class bf_woo_booking_fs {
 					'name'       => 'BuddyForms',
 				),
 				'menu'                => array(
-					'slug'       => 'edit.php?post_type=buddyforms-profile-image-field',
-					'first-path' => 'edit.php?post_type=buddyforms&page=buddyforms_welcome_screen',
-					'support'    => false,
+					'first-path'     => 'edit.php?post_type=buddyforms&page=buddyforms-account',
+					'support'        => false,
 				),
 			) );
 		}
