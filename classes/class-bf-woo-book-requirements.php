@@ -22,31 +22,36 @@ class bf_woo_booking_requirements {
 	}
 
 	public static function is_woocommerce_active() {
-		self::load_plugins_dependency();
-
-		return is_plugin_active( 'woocommerce/woocommerce.php' );
+		return self::is_plugin_active( 'woocommerce' );
 	}
 
 	public static function is_bf_woo_elem_active() {
-		self::load_plugins_dependency();
-
-		return is_plugin_active( 'BuddyForms-WooCommerce-Form-Elements/loader.php' );
+		return self::is_plugin_active( 'buddyforms-woocommerce-form-elements' );
 	}
 
 	public static function is_woo_booking_active() {
-		self::load_plugins_dependency();
-
-		return is_plugin_active( 'woocommerce-bookings/woocommerce-bookings.php' );
-	}
-
-	public static function load_plugins_dependency() {
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		return self::is_plugin_active( 'woocommerce-bookings' );
 	}
 
 	public static function is_buddy_form_active() {
-		self::load_plugins_dependency();
+		return ( self::is_plugin_active( 'buddyforms-premium' ) || self::is_plugin_active( 'buddyforms' ) );
+	}
 
-		return ( is_plugin_active( 'buddyforms-premium/BuddyForms.php' ) || is_plugin_active( 'buddyforms/BuddyForms.php' ) );
+	public static function is_plugin_active( $plugin_slug ) {
+		$active_plugins = get_option( 'active_plugins' );
+
+		if ( is_multisite() ) {
+			$network_active_plugins   = get_site_option( 'active_sitewide_plugins', array() );
+			$active_plugins = array_merge( $active_plugins, array_keys( $network_active_plugins ) );
+		}
+
+		foreach ( $active_plugins as $plugin_basename ) {
+			if ( 0 === strpos( strtolower( $plugin_basename ), strtolower( $plugin_slug . '/' ) ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public function setup_init() {
