@@ -73,7 +73,7 @@ if ( ! class_exists( 'buddyforms_woocommerce_booking' ) ) {
 
 		public function requirement_message() {
 			echo '<div class="error"><p>'
-			     . __( '<b>BuddyForms -> Woocommerce Booking</b> requires that BuddyForms, Woocommerce, Woocommerce Booking and BuddyForms WooCommerce Form Elements are installed and active. Until then, keep plugin activated only to continue enjoying this insightful message.', 'bf_woo_booking' )
+			     . __( '<b>BuddyForms Woocommerce Booking</b> requires that BuddyForms, Woocommerce, Woocommerce Booking and BuddyForms WooCommerce Form Elements are installed and active. Until then, keep plugin activated only to continue enjoying this insightful message.', 'bf_woo_booking' )
 			     . '</p></div>';
 		}
 

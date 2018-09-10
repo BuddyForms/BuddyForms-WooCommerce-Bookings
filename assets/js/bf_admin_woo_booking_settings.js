@@ -1,10 +1,4 @@
-/**
- * Created by Victor on 27/08/2018.
- */
-/**
- * Created by Victor on 22/08/2018.
- */
-jQuery(function ($) {
+jQuery(function (jQuery) {
     jQuery('#sortable_buddyforms_elements li.bf_woocommerce ').each(function () {
         var field_row = jQuery(this),
             field_row_id = field_row.attr('id'),
@@ -17,9 +11,8 @@ jQuery(function ($) {
             booking_has_person = field_row.find("#_wc_booking_has_persons-0"),
             booking_has_resources = field_row.find("#_wc_booking_has_resources-0"),
             downloadable = field_row.find("#_downloadable-0");
-        $('select[name="buddyforms_options[form_fields][' + field_id + '][product_type_default]"]').bind('change',function () {
-
-            var product_type = $(this).val();
+        jQuery('select[name="buddyforms_options[form_fields][' + field_id + '][product_type_default]"]').bind('change',function () {
+            var product_type = jQuery(this).val();
             switch(product_type) {
                 case 'simple':
 
@@ -40,14 +33,10 @@ jQuery(function ($) {
                 default:
                     booking_has_person_row.hide();
                     booking_has_resources_row.hide();
-
             }
 
             booking_has_person.attr('checked', false).change();
             booking_has_resources.attr('checked', false).change();
-
         })
     })
-
-
 });
