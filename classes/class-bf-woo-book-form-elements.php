@@ -16,7 +16,7 @@ class bf_woo_booking_elements {
 
 	public function __construct() {
         add_action( 'buddyforms_bookeable_product_display_element', array( $this, 'buddyforms_bookeable_product' ) );
-        add_action( 'wp_enqueue_scripts', array( $this, 'styles_and_scripts' ),99 );
+        add_action( 'wp_enqueue_scripts', array( $this, 'styles_and_scripts' ),9999 );
 	}
 
     public function buddyforms_bookeable_product() {
