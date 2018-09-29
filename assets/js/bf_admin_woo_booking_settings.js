@@ -3,6 +3,9 @@ jQuery(function (jQuery) {
         var field_row = jQuery(this),
             field_row_id = field_row.attr('id'),
             field_id = field_row_id.replace('field_', ''),
+            booking_duration_type_row = field_row.find("#table_row_" + field_id + "_wc_booking_duration_type"),
+            booking_duration_row = field_row.find("#table_row_" + field_id + "_wc_booking_duration"),
+            booking_duration_unit_row = field_row.find("#table_row_" + field_id + "_wc_booking_duration_unit"),
             virtual_row = field_row.find("#table_row_" + field_id + "_virtual"),
             booking_has_person_row = field_row.find("#table_row_" + field_id + "_wc_booking_has_persons"),
             booking_has_resources_row = field_row.find("#table_row_" + field_id + "_wc_booking_has_resources"),
@@ -18,6 +21,9 @@ jQuery(function (jQuery) {
 
                     booking_has_person_row.hide();
                     booking_has_resources_row.hide();
+                    booking_duration_type_row.hide();
+                    booking_duration_row.hide();
+                    booking_duration_unit_row.hide();
                     break;
                 case 'booking':
                     booking_has_person_row.show();
@@ -28,6 +34,11 @@ jQuery(function (jQuery) {
 
                     booking_has_person.show();
                     booking_has_resources.show();
+
+                    booking_duration_type_row.show();
+                    booking_duration_row.show();
+                    booking_duration_unit_row.show();
+
 
                     break;
                 default:
