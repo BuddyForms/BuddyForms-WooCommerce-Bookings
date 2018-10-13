@@ -36,6 +36,27 @@ jQuery(function (jQuery) {
             booking_cancel_limit_unit = field_row.find("#" + field_id + "_wc_booking_cancel_limit_unit"),
 
             downloadable = field_row.find("#_downloadable-0");
+
+        jQuery('input[name="buddyforms_options[form_fields][' + field_id + '][product_type_hidden][]"]').click(function () {
+
+            booking_fields_hidden.attr('checked', false).change();
+            booking_fields_hidden.prop('checked', false);
+            booking_duration_type_row.hide();
+            booking_duration_row.hide();
+            booking_duration_unit_row.hide();
+            booking_min_duration_row.hide();
+            booking_max_duration_row.hide();
+            booking_enable_range_picker_row.hide();
+            booking_calendar_display_mode_row.hide();
+            booking_requires_confirmation_row.hide();
+            booking_can_be_cancelled_row.hide();
+            booking_cancel_limit_row.hide();
+            booking_cancel_limit_unit_row.hide();
+
+            booking_can_be_cancelled.attr('checked', false).change();
+            booking_can_be_cancelled.prop('checked', false);
+
+        })
         jQuery('select[name="buddyforms_options[form_fields][' + field_id + '][product_type_default]"]').bind('change',function () {
             var product_type = jQuery(this).val();
             switch(product_type) {
@@ -195,6 +216,7 @@ jQuery(function (jQuery) {
                 booking_cancel_limit_unit.show();
             }
         });
+
         jQuery('select[name="buddyforms_options[form_fields][' + field_id + '][wc_booking_duration_type]"]').bind('change',function () {
             var product_type = jQuery(this).val();
             switch(product_type) {
