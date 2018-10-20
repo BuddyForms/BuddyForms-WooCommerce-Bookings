@@ -1,7 +1,21 @@
 jQuery(function ($) {
     $( document ).ready(function() {
 
+        Hooks.add_filter( 'booking_general_tab_filter', function(  hidden_fields,product_type_default ) {
 
+            if(product_type_default === 'booking'){
+                if (general_settings_param.booking_fields_hidden && general_settings_param.booking_fields_hidden[0] &&
+                    general_settings_param.booking_fields_hidden[0] === 'hidden') {
+
+                    hidden_fields.push(true);
+                }
+                else{
+                    hidden_fields.push(false);
+                }
+            }
+
+            return hidden_fields
+        } ) // Default priority 10
 
 
         var formSlug = jQuery('input[name="form_slug"]');
