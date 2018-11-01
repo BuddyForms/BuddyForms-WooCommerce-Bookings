@@ -16,7 +16,7 @@ var bfWooBooking = {
             var formValidator = buddyformsForm.data("validator");
             if (formValidator && formValidator.settings) {
                 var prev_ignore = formValidator.settings.ignore;
-                formValidator.settings.ignore = "#_wc_booking_cost, #_wc_booking_block_cost, #_wc_display_cost, :disabled, " + prev_ignore;
+                formValidator.settings.ignore = '#woocommerce-product-data input[type="number"][step="0.01"], :disabled, ' + prev_ignore;
                 if (typeof general_settings_param !== 'undefined') {
                     if (general_settings_param.product_type_hidden && general_settings_param.product_type_hidden[0] &&
                         general_settings_param.product_type_hidden[0] === 'hidden') {
