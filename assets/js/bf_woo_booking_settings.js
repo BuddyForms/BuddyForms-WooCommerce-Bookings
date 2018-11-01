@@ -1,6 +1,6 @@
 jQuery(document).ready(function () {
-    if(Hooks) {
-        Hooks.add_filter('booking_general_tab_filter', function (hidden_fields, product_type_default) {
+    if (BF_Woo_Element_Hook) {
+        BF_Woo_Element_Hook.add_filter('booking_general_tab_filter', function (hidden_fields, product_type_default) {
 
             if (product_type_default === 'booking') {
                 if (general_settings_param.booking_fields_hidden && general_settings_param.booking_fields_hidden[0] &&
@@ -31,7 +31,6 @@ jQuery(document).ready(function () {
                     //product_type_default
                     var product_type = jQuery("#product-type");
                     if (general_settings_param.product_type_default) {
-
                         product_type.val(general_settings_param.product_type_default).change();
                     }
 
