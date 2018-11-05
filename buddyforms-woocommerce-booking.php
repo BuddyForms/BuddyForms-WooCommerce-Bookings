@@ -3,7 +3,7 @@
  * Plugin Name: BuddyForms Woocommerce Booking
  * Plugin URI: http://buddyforms.com/downloads/
  * Description: Add Woocommerce Booking Element to your BuddyForms
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: ThemeKraft Team
  * Author URI: https://profiles.wordpress.org/svenl77
  * License: GPLv2 or later
@@ -32,75 +32,80 @@
  ****************************************************************************
  */
 
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (! defined('WPINC')) {
+    die;
 }
 
-if ( ! class_exists( 'buddyforms_woocommerce_booking' ) ) {
+if (! class_exists('buddyforms_woocommerce_booking')) {
+    require_once dirname(__FILE__) . '/classes/class-bf-woo-book-fs.php';
+    new bf_woo_booking_fs();
 
-	require_once dirname( __FILE__ ) . '/classes/class-bf-woo-book-fs.php';
-	new bf_woo_booking_fs();
+    class buddyforms_woocommerce_booking
+    {
+        public static $assets_css;
 
-	class buddyforms_woocommerce_booking {
+        public static $assets_js;
 
-		public static $assets_css;
-		public static $assets_js;
-		public static $views;
+        public static $views;
 
-		/**
-		 * Instance of this class
-		 *
-		 * @var $instance buddyforms_woocommerce_booking
-		 */
-		protected static $instance = null;
+        /**
+         * Instance of this class
+         *
+         * @var buddyforms_woocommerce_booking
+         */
+        protected static $instance = null;
 
-		private function __construct() {
-			$this->constants();
-			$this->load_plugin_textdomain();
-			require_once 'classes/class-bf-woo-book-requirements.php';
-			new bf_woo_booking_requirements();
-			if (
-				bf_woo_booking_requirements::is_buddy_form_active() && bf_woo_booking_requirements::is_woocommerce_active()
-				&& bf_woo_booking_requirements::is_bf_woo_elem_active() && bf_woo_booking_requirements::is_woo_booking_active()
-			) {
-				require_once 'classes/class-bf-woo-book-manager.php';
-				new bf_woo_booking_manager();
-			} else {
-				add_action( 'network_admin_notices', array( $this, 'requirement_message' ) );
-				add_action( 'admin_notices', array( $this, 'requirement_message' ) );
-			}
-		}
+        private function __construct()
+        {
+            $this->constants();
+            $this->load_plugin_textdomain();
+            require_once 'classes/class-bf-woo-book-requirements.php';
+            new bf_woo_booking_requirements();
+            if (bf_woo_booking_requirements::is_buddy_form_active() && bf_woo_booking_requirements::is_woocommerce_active()
+                && bf_woo_booking_requirements::is_bf_woo_elem_active() && bf_woo_booking_requirements::is_woo_booking_active()
+            ) {
+                require_once 'classes/class-bf-woo-book-manager.php';
+                new bf_woo_booking_manager();
+            } else {
+                add_action('network_admin_notices', [$this, 'requirement_message']);
+                add_action('admin_notices', [$this, 'requirement_message']);
+            }
+        }
 
-		public function requirement_message() {
-			echo '<div class="error"><p>'
-			     . __( '<b>BuddyForms Woocommerce Booking</b> requires that BuddyForms, Woocommerce, Woocommerce Booking and BuddyForms WooCommerce Form Elements are installed and active. Until then, keep plugin activated only to continue enjoying this insightful message.', 'bf_woo_booking' )
-			     . '</p></div>';
-		}
+        public function requirement_message()
+        {
+            echo '<div class="error"><p>'
+                 . __('<b>BuddyForms Woocommerce Booking</b> requires that BuddyForms, Woocommerce, Woocommerce Booking and BuddyForms WooCommerce Form Elements are installed and active. Until then, keep plugin activated only to continue enjoying this insightful message.', 'bf_woo_booking')
+                 . '</p></div>';
+        }
 
-		private function constants() {
-			self::$assets_css = plugin_dir_url( __FILE__ ) . 'assets/css/';
-			self::$assets_js  = plugin_dir_url( __FILE__ ) . 'assets/js/';
-			self::$views      = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
-		}
+        /**
+         * Return an instance of this class.
+         *
+         * @return object A single instance of this class.
+         */
+        public static function get_instance()
+        {
+            // If the single instance hasn't been set, set it now.
+            if (self::$instance === null) {
+                self::$instance = new self();
+            }
 
-		/**
-		 * Return an instance of this class.
-		 *
-		 * @return object A single instance of this class.
-		 */
-		public static function get_instance() {
-			// If the single instance hasn't been set, set it now.
-			if ( null === self::$instance ) {
-				self::$instance = new self;
-			}
+            return self::$instance;
+        }
 
-			return self::$instance;
-		}
+        public function load_plugin_textdomain()
+        {
+            load_plugin_textdomain('bf_woo_booking', false, basename(dirname(__FILE__)) . '/languages');
+        }
 
-		public function load_plugin_textdomain() {
-			load_plugin_textdomain( 'bf_woo_booking', false, basename( dirname( __FILE__ ) ) . '/languages' );
-		}
-	}
+        private function constants()
+        {
+            self::$assets_css = plugin_dir_url(__FILE__) . 'assets/css/';
+            self::$assets_js = plugin_dir_url(__FILE__) . 'assets/js/';
+            self::$views = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
+        }
+    }
 
-	add_action( 'plugins_loaded', array( 'buddyforms_woocommerce_booking', 'get_instance' ), 1 );
+    add_action('plugins_loaded', ['buddyforms_woocommerce_booking', 'get_instance'], 1);
 }
