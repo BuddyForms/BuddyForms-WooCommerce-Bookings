@@ -19,6 +19,12 @@ class bf_woo_booking_builder
         add_filter('bf_woo_element_woo_implemented_tab', array($this, 'buddyforms_bookeable_product_implemented_tabs'), 1, 1);
         add_filter('bf_woo_booking_default_options', array($this, 'buddyforms_bookeable_product_default_options'), 1, 3);
         add_action('include_bf_woo_booking_scripts', array($this, 'buddyforms_woo_bookings_script'));
+        add_filter('bf_woo_booking_dependency', array($this, 'buddyforms_bookeable_is_active'), 1, 1);
+    }
+
+    public function buddyforms_bookeable_is_active($is_active){
+
+        return true;
     }
 
     public function buddyforms_bookeable_product_default_options($form_fields, $product_type_default, $field_id)
