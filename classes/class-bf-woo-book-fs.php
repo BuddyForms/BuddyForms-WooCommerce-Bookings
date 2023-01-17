@@ -112,30 +112,31 @@ class bf_woo_booking_fs
             }
 
             $bf_woo_booking_fs = fs_dynamic_init(array(
-                'id' => '2509',
-                'slug' => 'buddyforms-woocommerce-bookings',
-                'type' => 'plugin',
-                'public_key' => 'pk_6213aaa69dd537cf03625ba531444',
-                'is_premium' => true,
-                'is_premium_only' => true,
+                'id'                  => '2509',
+                'slug'                => 'buddyforms-woocommerce-bookings',
+                'type'                => 'plugin',
+                'public_key'          => 'pk_6213aaa69dd537cf03625ba531444',
+                'is_premium'          => true,
+                'is_premium_only'     => true,
                 // If your addon is a serviceware, set this option to false.
                 'has_premium_version' => true,
-                'has_paid_plans' => true,
-                'is_org_compliant' => false,
-                'trial' => array(
-                    'days' => 14,
+                'has_paid_plans'      => true,
+                'is_org_compliant'    => false,
+                'trial'               => array(
+                    'days'               => 7,
                     'is_require_payment' => true,
                 ),
-                'parent' => array(
-                    'id' => '391',
-                    'slug' => 'buddyforms',
+                'parent'              => array(
+                    'id'         => '391',
+                    'slug'       => 'buddyforms',
                     'public_key' => 'pk_dea3d8c1c831caf06cfea10c7114c',
-                    'name' => 'BuddyForms',
+                    'name'       => 'BuddyForms',
                 ),
-                'menu' => array(
-                    'first-path' => 'edit.php?post_type=buddyforms&page=buddyforms_welcome_screen',
-                    'support' => false,
+                'menu'           => array(
+                    'first-path' => 'plugins.php',
+                    'support'    => false,
                 ),
+                'bundle_license_auto_activation' => true,
             ));
         }
 

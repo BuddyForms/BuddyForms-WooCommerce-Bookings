@@ -2,8 +2,8 @@
 Contributors: gfirem, marin250189, themekraft, svenl77
 Tags: buddyforms, buddyforms fields, buddyforms field woocommerce booking, woocommerce booking
 Requires at least: 4.5
-Tested up to: 4.9
-Stable tag: 1.0.1
+Tested up to: 6.1.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,7 +51,12 @@ Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Changelog ==
 
-= 1.0.1 =
+= 1.0.2 - 16 Jan 2023 =
+* Updated duration of trial version.
+* Updated first path to avoid issues after activation.
+* Enabled bundle license auto activation.
+* Tested up to WordPress 6.1.1
+
 * Fixed the selection of the values on the frontend.
 * Implemented the js Hook.
 
